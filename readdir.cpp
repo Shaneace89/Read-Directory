@@ -25,12 +25,11 @@ int menu()
 {
     int choice = 0;
 
-    cout << endl
-         << "Welcome to the Directory Reader" << endl
-         << endl
-         << "1: Output Current Directory to output.csv" << endl
-         << "2: Output Custom Directory to output.csv" << endl
-         << "3: Exit Program" << endl
+    cout << "Menu" << endl
+         << "1: For Minor ID (First 8 Characters of the filename)" << endl
+         << "2: For Inspector Name (Last,First)" << endl
+         << "8: Custom Amount of Characters from beginning of the filename" << endl
+         << "9: Exit Program" << endl
          << endl
          << "Please enter your choice: ";
      cin >> choice;
@@ -47,13 +46,12 @@ int menu()
 string dirInput()
 {
     string dir;
-    
-    cout << "Example: /home" << endl << endl
+    cout << endl
+         << "Welcome to the Directory Reader" << endl << endl
+         << "Example: /home" << endl
          << "Please enter file path: ";
     cin >> dir;
-    cout << endl << endl
-         << "Directory has been outputted to output.csv"
-         << endl << endl;
+    cout << endl;
 
     return dir;
 }
@@ -78,7 +76,7 @@ int dirLength(string dirF)
 /******************************************************************
  print: creates output.csv file
  takes in string of the path, the int count of char in path
- outputs to output.csv stripped file path (only file name)
+ outputs to output.csv stripped file path (only minor id)
  ******************************************************************/
 
 void print(string path, int count)
@@ -91,7 +89,30 @@ void print(string path, int count)
         {
           print = entry.path();
           print.erase(0,count);
-          print.erase(8,100); //8 needs to be a variable
+          print.erase(8,100);
+          fout << print << endl;
+        }
+    fout.close();
+}
+
+/******************************************************************
+ print2: creates output.csv file for inspector name
+ takes in string of the path, the int count of char in path
+ outputs to output.csv stripped file path (only inspector name)
+ ******************************************************************/
+
+void print2(string path, int count)
+{
+    string print;
+    ofstream fout;
+    fout.open("output.csv");
+
+    for (const auto & entry : fs::directory_iterator(path))
+        {
+          print = entry.path();
+          print.erase(0,count);
+          
+          print = print.substr(0, print.find("_"));
           fout << print << endl;
         }
     fout.close();
@@ -111,11 +132,13 @@ int main()
     int count = 0, choice;
     string dir, path; 
 
+    dir = dirInput();
     choice = menu();
 
     if (choice == 1)
     {
-    dir = fs::current_path();
+    count = dirLength(dir);
+    print(dir, count);
 
     cout << endl
          << "Directory has been outputted to output.csv"
@@ -123,13 +146,11 @@ int main()
     }
     else if (choice == 2)
     {
-      dir = dirInput();
+     count = dirLength(dir);
+     print2(dir, count);
     }
     else
     {return 0;}
-
-    count = dirLength(dir);
-    print(dir, count);  
  
     return 0;
 }
