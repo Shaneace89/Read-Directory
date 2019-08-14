@@ -1,7 +1,7 @@
 /*File Name: readdir.cpp
 
  Author: Shane Fleming
- Employer: Texas School Safety Center
+ Employer: Texas State University
  Date: 07/26/2019
 
  Read in from a directory and output first string of each file to .csv*/
@@ -26,8 +26,8 @@ int menu()
     int choice = 0;
 
     cout << "Menu" << endl
-         << "1: For Minor ID (First 8 Characters of the filename)" << endl
-         << "2: For Inspector Name (Last,First)" << endl
+         << "1: First 8 Characters of the Filename" << endl
+         << "2: Last,First Name (Stops at First '_')" << endl
          << "8: For Custom Amount of Characters" << endl
          << "9: Exit Program" << endl
          << endl
@@ -76,7 +76,7 @@ int dirLength(string dirF)
 /******************************************************************
  print: creates output.csv file for minor id or custom
  takes in string of the path, the int count of char in path
- takes in charRemove, defaults '8' (minor ID) if choice 8 = custom
+ takes in charRemove, defaults '8' if choice 8 = custom
  outputs to output.csv stripped file path
  ******************************************************************/
 
@@ -97,9 +97,9 @@ void print(string path, int count, int charRemove)
 }
 
 /******************************************************************
- print2: creates output.csv file for inspector name
+ print2: creates output.csv file for last,first name
  takes in string of the path, the int count of char in path
- outputs to output.csv stripped file path (only inspector name)
+ outputs to output.csv stripped file path (last,first name)
  ******************************************************************/
 
 void print2(string path, int count)
