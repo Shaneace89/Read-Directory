@@ -28,7 +28,7 @@ int menu()
     cout << "Menu" << endl
          << "1: For Minor ID (First 8 Characters of the filename)" << endl
          << "2: For Inspector Name (Last,First)" << endl
-         << "8: Custom Amount of Characters from beginning of the filename" << endl
+         << "8: For Custom Amount of Characters" << endl
          << "9: Exit Program" << endl
          << endl
          << "Please enter your choice: ";
@@ -74,12 +74,13 @@ int dirLength(string dirF)
 }
 
 /******************************************************************
- print: creates output.csv file
+ print: creates output.csv file for minor id or custom
  takes in string of the path, the int count of char in path
- outputs to output.csv stripped file path (only minor id)
+ takes in charRemove, defaults '8' (minor ID) if choice 8 = custom
+ outputs to output.csv stripped file path
  ******************************************************************/
 
-void print(string path, int count)
+void print(string path, int count, int charRemove)
 {
     string print;
     ofstream fout;
@@ -89,7 +90,7 @@ void print(string path, int count)
         {
           print = entry.path();
           print.erase(0,count);
-          print.erase(8,100);
+          print.erase(charRemove,100);
           fout << print << endl;
         }
     fout.close();
@@ -129,7 +130,7 @@ void print2(string path, int count)
 
 int main() 
 {
-    int count = 0, choice;
+    int count = 0, choice, charRemove = 8;
     string dir, path; 
 
     dir = dirInput();
@@ -138,7 +139,7 @@ int main()
     if (choice == 1)
     {
     count = dirLength(dir);
-    print(dir, count);
+    print(dir, count, charRemove);
 
     cout << endl
          << "Directory has been outputted to output.csv"
@@ -148,6 +149,22 @@ int main()
     {
      count = dirLength(dir);
      print2(dir, count);
+     
+     cout << endl
+         << "Directory has been outputted to output.csv"
+         << endl << endl;
+    }
+    else if (choice == 8)
+    {
+    count = dirLength(dir);
+    cout << "How many characters do wish to save? ";
+    cin >> charRemove;
+    cout << endl;
+    print(dir, count, charRemove);
+
+    cout << endl
+         << "Directory has been outputted to output.csv"
+         << endl << endl;
     }
     else
     {return 0;}
