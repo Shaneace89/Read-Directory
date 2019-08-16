@@ -26,9 +26,14 @@ int menu()
     int choice = 0;
 
     cout << "Menu" << endl
-         << "1: First 8 Characters of the Filename" << endl
-         << "2: Last,First Name (Stops at First '_')" << endl
-         << "8: For Custom Amount of Characters" << endl
+         << "1: Filename until first '_'" << endl
+         << "2: Filename until first '-'" << endl
+         << "3: Filename until first '.'" << endl
+         << "4: Filename until first ','" << endl
+         << "5: Filename until first ':'" << endl
+         << "6: Filename until first ' '" << endl
+         << "7: Finename until custom count" << endl
+         << "8: Filename until first custom character" << endl
          << "9: Exit Program" << endl
          << endl
          << "Please enter your choice: ";
@@ -102,7 +107,7 @@ void print(string path, int count, int charRemove)
  outputs to output.csv stripped file path (last,first name)
  ******************************************************************/
 
-void print2(string path, int count)
+void print2(string path, int count, char dot)
 {
     string print;
     ofstream fout;
@@ -113,10 +118,21 @@ void print2(string path, int count)
           print = entry.path();
           print.erase(0,count);
           
-          print = print.substr(0, print.find("_"));
+          print = print.substr(0, print.find(dot));
           fout << print << endl;
         }
     fout.close();
+}
+
+/******************************************************************
+ printy: displays text
+ ******************************************************************/
+
+void printy()
+{
+    cout << endl
+         << "Directory has been outputted to output.csv"
+         << endl << endl;
 }
 
 /******************************************************************
@@ -130,44 +146,93 @@ void print2(string path, int count)
 
 int main() 
 {
-    int count = 0, choice, charRemove = 8;
-    string dir, path; 
+    int count = 0, choice = 0, charRemove = 8;
+    string dir, path;
+    char dot; 
 
     dir = dirInput();
-    choice = menu();
 
+    while (choice !=9)
+ {    
+    choice = menu();
+    
     if (choice == 1)
     {
+    dot = '_';
     count = dirLength(dir);
-    print(dir, count, charRemove);
+    print2(dir, count, dot);
 
-    cout << endl
-         << "Directory has been outputted to output.csv"
-         << endl << endl;
+    printy();
     }
     else if (choice == 2)
     {
+     dot = '-';
      count = dirLength(dir);
-     print2(dir, count);
+     print2(dir, count, dot);
      
-     cout << endl
-         << "Directory has been outputted to output.csv"
-         << endl << endl;
+     printy();
+    }
+    else if (choice == 3)
+    {
+     dot = '.';
+     count = dirLength(dir);
+     print2(dir, count, dot);
+
+     printy();
+    }
+    else if (choice == 4)
+    {
+     dot = ',';
+     count = dirLength(dir);
+     print2(dir, count, dot);
+
+     printy();
+    }
+    else if (choice == 5)
+    {
+     dot = ':';
+     count = dirLength(dir);
+     print2(dir, count, dot);
+
+     printy();
+    }
+    else if (choice == 6)
+    {
+     dot = ' ';
+     count = dirLength(dir);
+     print2(dir, count, dot);
+
+     printy();
+    }
+    else if (choice == 7)
+    {
+    count = dirLength(dir);
+    cout << "Custom amount to save: ";
+    cin >> charRemove;
+    print(dir, count, charRemove);
+    printy();
     }
     else if (choice == 8)
     {
     count = dirLength(dir);
-    cout << "How many characters do wish to save? ";
-    cin >> charRemove;
-    cout << endl;
-    print(dir, count, charRemove);
+    cout << "Custom Stop Character? ";
+    cin >> dot;
+    print2(dir, count, dot);
 
-    cout << endl
-         << "Directory has been outputted to output.csv"
-         << endl << endl;
+    printy();
     }
+    
+    else if (choice ==9)
+    {
+    cout << endl << "Thank you for using my Program!" << endl << endl;
+    }
+
     else
-    {return 0;}
+    {
+    cout << endl << "Please enter valid choice" << endl << endl;
+    }
  
+ } 
+
     return 0;
 }
