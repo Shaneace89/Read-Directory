@@ -158,78 +158,82 @@ int main()
     
     if (choice == 1)
     {
-    dot = '_';
-    count = dirLength(dir);
-    print2(dir, count, dot);
-
-    printy();
+       dot = '_';
+       count = dirLength(dir);
+       print2(dir, count, dot);
+       printy();
     }
+    
     else if (choice == 2)
     {
-     dot = '-';
-     count = dirLength(dir);
-     print2(dir, count, dot);
-     
-     printy();
+        dot = '-';
+        count = dirLength(dir);
+        print2(dir, count, dot);
+        printy();
     }
+    
     else if (choice == 3)
     {
-     dot = '.';
-     count = dirLength(dir);
-     print2(dir, count, dot);
-
-     printy();
+        dot = '.';
+        count = dirLength(dir);
+        print2(dir, count, dot);
+        printy();
     }
+    
     else if (choice == 4)
     {
-     dot = ',';
-     count = dirLength(dir);
-     print2(dir, count, dot);
-
-     printy();
+        dot = ',';
+        count = dirLength(dir);
+        print2(dir, count, dot);
+        printy();
     }
+    
     else if (choice == 5)
     {
-     dot = ':';
-     count = dirLength(dir);
-     print2(dir, count, dot);
-
-     printy();
+        dot = ':';
+        count = dirLength(dir);
+        print2(dir, count, dot);
+        printy();
     }
+    
     else if (choice == 6)
     {
-     dot = ' ';
-     count = dirLength(dir);
-     print2(dir, count, dot);
-
-     printy();
+        dot = ' ';
+        count = dirLength(dir);
+        print2(dir, count, dot);
+        printy();
     }
+    
     else if (choice == 7)
     {
-    count = dirLength(dir);
-    cout << "Custom amount to save: ";
-    cin >> charRemove;
-    print(dir, count, charRemove);
-    printy();
+       count = dirLength(dir);
+       
+       cout << "Custom amount to save: ";
+       cin >> charRemove;
+       
+       print(dir, count, charRemove);
+       printy();
     }
+    
     else if (choice == 8)
     {
-    count = dirLength(dir);
-    cout << "Custom Stop Character? ";
-    cin >> dot;
-    print2(dir, count, dot);
-
-    printy();
+       count = dirLength(dir);
+       
+       cout << "Custom Stop Character? ";
+       cin >> dot;
+       
+       print2(dir, count, dot);
+       printy();
     }
     
     else if (choice ==9)
     {
-    cout << endl << "Thank you for using my Program!" << endl << endl;
+       cout << endl << "Thank you for using my Program!" << endl << endl;
     }
 
     else
     {
-    cout << endl << "Please enter valid choice" << endl << endl;
+       cout << endl << "Please enter valid choice" << endl << endl;
     }
  
  } 
