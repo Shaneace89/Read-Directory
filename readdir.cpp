@@ -58,8 +58,8 @@ int menu()
          << "4: Filename until first ','" << endl
          << "5: Filename until first ':'" << endl
          << "6: Filename until first ' '" << endl
-         << "7: Finename until custom count" << endl
-         << "8: Filename until first custom character" << endl
+         << "7: Filename until first custom character" << endl
+         << "8: Finename until custom count" << endl
          << "9: Exit Program" << endl
          << endl
          << "Please enter your choice: ";
@@ -161,10 +161,7 @@ void printy()
 }
 
 /******************************************************************
- main: creates variables, and calls functions, passes need values
- choice 1: found it unnecassary to create funution for
- choice 2: calls dirInput and assigns vaule to dir
- choice catchall: ends program
+ main: creates variables, and calls functions, passes needed values
  calls dirLength and assigns to count
  passes count and dir to print, print cleans and exports
  ******************************************************************/
@@ -247,26 +244,26 @@ int main()
 
                          break;
                       }
-    
+
                   case 7:
                       {
-                         cout << "Custom amount to save: ";
-                         cin >> charRemove;
-       
-                         print(dir, count, charRemove);
+                         cout << "Custom Stop Character? ";
+                         cin >> dot;
+
+                         print2(dir, count, dot);
                          printy();
 
                          break;
                       }
-    
+
                   case 8:
                       {
-                         cout << "Custom Stop Character? ";
-                         cin >> dot;
-       
-                         print2(dir, count, dot);
+                         cout << "Custom amount to save: ";
+                         cin >> charRemove;
+
+                         print(dir, count, charRemove);
                          printy();
- 
+
                          break;
                       }
     
