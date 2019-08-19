@@ -11,9 +11,35 @@
 #include <iomanip>
 #include <fstream>
 #include <experimental/filesystem>
+#include <dirent.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 namespace fs = experimental::filesystem;
+
+/******************************************************************                                              
+DirectoryExists: checks if dir is valid path
+takes in dir, as dir path
+returns bool, true if valid, false if not found
+******************************************************************/
+
+bool DirectoryExists( const char* pzPath )
+{
+    if ( pzPath == NULL) return false;
+
+    DIR *pDir;
+    bool bExists = false;
+
+    pDir = opendir (pzPath);
+
+    if (pDir != NULL)
+    {
+        bExists = true;    
+        (void) closedir (pDir);
+    }
+
+    return bExists;
+}
 
 /******************************************************************
  menu: displays the main Menu
@@ -57,8 +83,7 @@ string dirInput()
          << "Please enter file path: ";
     cin >> dir;
     cout << endl;
-
-    return dir;
+	return dir;
 }
 
 /******************************************************************
@@ -146,11 +171,21 @@ void printy()
 
 int main() 
 {
-    int count = 0, choice = 0, charRemove = 8;
+    int count = 0, choice = 0, charRemove = 8, count_copy = 0;
     string dir, path;
-    char dot; 
+    char dot;
+    bool check = false; 
 
-    dir = dirInput();
+    while (check == false)
+	{
+        dir = dirInput();
+        count = dirLength(dir);
+        count_copy = count;
+        char dirChar[count_copy+1];
+        strcpy(dirChar, dir.c_str());
+
+	check = DirectoryExists(dirChar);
+	}
 
     while (choice !=9)
  {    
@@ -159,7 +194,6 @@ int main()
     if (choice == 1)
     {
        dot = '_';
-       count = dirLength(dir);
        print2(dir, count, dot);
        printy();
     }
@@ -167,7 +201,6 @@ int main()
     else if (choice == 2)
     {
         dot = '-';
-        count = dirLength(dir);
         print2(dir, count, dot);
         printy();
     }
@@ -175,7 +208,6 @@ int main()
     else if (choice == 3)
     {
         dot = '.';
-        count = dirLength(dir);
         print2(dir, count, dot);
         printy();
     }
@@ -183,7 +215,6 @@ int main()
     else if (choice == 4)
     {
         dot = ',';
-        count = dirLength(dir);
         print2(dir, count, dot);
         printy();
     }
@@ -191,7 +222,6 @@ int main()
     else if (choice == 5)
     {
         dot = ':';
-        count = dirLength(dir);
         print2(dir, count, dot);
         printy();
     }
@@ -199,15 +229,12 @@ int main()
     else if (choice == 6)
     {
         dot = ' ';
-        count = dirLength(dir);
         print2(dir, count, dot);
         printy();
     }
     
     else if (choice == 7)
     {
-       count = dirLength(dir);
-       
        cout << "Custom amount to save: ";
        cin >> charRemove;
        
@@ -217,8 +244,6 @@ int main()
     
     else if (choice == 8)
     {
-       count = dirLength(dir);
-       
        cout << "Custom Stop Character? ";
        cin >> dot;
        
