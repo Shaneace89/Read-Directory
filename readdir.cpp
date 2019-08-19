@@ -177,91 +177,116 @@ int main()
     bool check = false; 
 
     while (check == false)
-	{
-        dir = dirInput();
-        count = dirLength(dir);
-        count_copy = count;
-        char dirChar[count_copy+1];
-        strcpy(dirChar, dir.c_str());
+        {
+           dir = dirInput();
+           count = dirLength(dir);
+           count_copy = count;
+           char dirChar[count_copy+1];
+           strcpy(dirChar, dir.c_str());
 
-	check = DirectoryExists(dirChar);
+	   check = DirectoryExists(dirChar);
 	}
-
+        
     while (choice !=9)
- {    
-    choice = menu();
-    
-    if (choice == 1)
-    {
-       dot = '_';
-       print2(dir, count, dot);
-       printy();
-    }
-    
-    else if (choice == 2)
-    {
-        dot = '-';
-        print2(dir, count, dot);
-        printy();
-    }
-    
-    else if (choice == 3)
-    {
-        dot = '.';
-        print2(dir, count, dot);
-        printy();
-    }
-    
-    else if (choice == 4)
-    {
-        dot = ',';
-        print2(dir, count, dot);
-        printy();
-    }
-    
-    else if (choice == 5)
-    {
-        dot = ':';
-        print2(dir, count, dot);
-        printy();
-    }
-    
-    else if (choice == 6)
-    {
-        dot = ' ';
-        print2(dir, count, dot);
-        printy();
-    }
-    
-    else if (choice == 7)
-    {
-       cout << "Custom amount to save: ";
-       cin >> charRemove;
-       
-       print(dir, count, charRemove);
-       printy();
-    }
-    
-    else if (choice == 8)
-    {
-       cout << "Custom Stop Character? ";
-       cin >> dot;
-       
-       print2(dir, count, dot);
-       printy();
-    }
-    
-    else if (choice ==9)
-    {
-       cout << endl << "Thank you for using my Program!" << endl << endl;
-    }
+        {
+	   choice = menu();
 
-    else
-    {
-       cout << endl << "Please enter valid choice" << endl << endl;
-    }
+           switch (choice)
+               {    
+    
+                  case 1:
+                      {
+                         dot = '_';
+                         print2(dir, count, dot);
+                         printy();
+
+                         break;
+                      }
+    
+                  case 2:
+                      {
+                         dot = '-';
+                         print2(dir, count, dot);
+                         printy();
+
+                         break;
+                      }
+    
+                  case 3:
+                      {
+                         dot = '.';
+                         print2(dir, count, dot);
+                         printy();
+     
+                         break;
+                      }
+    
+                  case 4:
+                      {
+                         dot = ',';
+                         print2(dir, count, dot);
+                         printy();
+       
+                         break;
+                      }
+    
+                  case 5:
+                      {
+                         dot = ':';
+                         print2(dir, count, dot);
+                         printy();
+
+                         break;
+                      }
+    
+                  case 6:
+                      {
+                         dot = ' ';
+                         print2(dir, count, dot);
+                         printy();
+
+                         break;
+                      }
+    
+                  case 7:
+                      {
+                         cout << "Custom amount to save: ";
+                         cin >> charRemove;
+       
+                         print(dir, count, charRemove);
+                         printy();
+
+                         break;
+                      }
+    
+                  case 8:
+                      {
+                         cout << "Custom Stop Character? ";
+                         cin >> dot;
+       
+                         print2(dir, count, dot);
+                         printy();
  
- } 
+                         break;
+                      }
+    
+                  case 9:
+                      {
+                         cout << endl << "Thank you for using my Program!" 
+                              << endl << endl;
 
-    return 0;
+                         return 0;
+                      }
+
+                  default:
+                      {
+                         cout << endl << "Please enter valid choice" 
+                              << endl << endl;
+
+                         break;
+                      }
+               } 
+        }
+    
+     return 0;
 }
