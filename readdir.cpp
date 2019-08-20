@@ -98,7 +98,7 @@ int dirLength(string dirF)
 }
 
 /******************************************************************
- print: creates output.csv file for minor id or custom
+ print: creates output.csv file custom amount
  takes in string of the path, the int count of char in path
  takes in charRemove, defaults '8' if choice 8 = custom
  outputs to output.csv stripped file path
@@ -121,9 +121,9 @@ void print(string path, int count, int charRemove)
 }
 
 /******************************************************************
- print2: creates output.csv file for last,first name
+ print2: creates output.csv file for certain char
  takes in string of the path, the int count of char in path
- outputs to output.csv stripped file path (last,first name)
+ outputs to output.csv stripped file path
  ******************************************************************/
 
 void print2(string path, int count, char dot)
