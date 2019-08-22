@@ -55,6 +55,7 @@ int menu()
          << "7: Filename until first custom character" << endl
          << "8: Finename until custom count" << endl
          << "9: Exit Program" << endl
+         << "0: Display (cat) output.csv" << endl
          << endl
          << "Please enter your choice: ";
      cin >> choice;
@@ -72,7 +73,8 @@ string dirInput()
 {
     string dir;
     cout << endl
-         << "Welcome to the Directory Reader" << endl << endl
+         << "Welcome to the Directory Reader"
+         << endl << endl
          << "Example: /home" << endl
          << "Please enter file path: ";
     cin >> dir;

@@ -126,6 +126,15 @@ int main()
                          return 0;
                       }
 
+                  case 0:
+                      {
+                         cout << endl;
+                         system("cat output.csv");
+                         cout << endl;
+
+                         break;
+                      }
+
                   default:
                       {
                          cout << endl << "Please enter valid choice" 
